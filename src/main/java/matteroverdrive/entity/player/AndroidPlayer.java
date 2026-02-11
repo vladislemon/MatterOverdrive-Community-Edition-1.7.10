@@ -18,9 +18,11 @@
 
 package matteroverdrive.entity.player;
 
+import ca.wescook.nutrition.data.PlayerDataHandler;
 import cofh.api.energy.IEnergyContainerItem;
 import cofh.api.energy.IEnergyStorage;
 import com.google.common.collect.Multimap;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import matteroverdrive.MatterOverdrive;
@@ -525,6 +527,9 @@ public class AndroidPlayer implements IEnergyStorage, IAndroid
                         int foodNeeded = 20 - getPlayer().getFoodStats().getFoodLevel();
                         int extractedEnergy = extractEnergyRaw(foodNeeded * ENERGY_FOOD_MULTIPLY, false);
                         getPlayer().getFoodStats().addStats(extractedEnergy / ENERGY_FOOD_MULTIPLY, 0);
+                        if (Loader.isModLoaded("nutrition")) {
+                            PlayerDataHandler.getForPlayer(player).reset();
+                        }
                     }
 
                     manageHasPower();
