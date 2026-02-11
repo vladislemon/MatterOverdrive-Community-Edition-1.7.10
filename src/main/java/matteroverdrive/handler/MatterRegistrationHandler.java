@@ -22,6 +22,7 @@ import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.handler.thread.RegisterItemsFromRecipes;
 import matteroverdrive.network.packet.client.PacketUpdateMatterRegistry;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.Level;
@@ -88,9 +89,9 @@ public class MatterRegistrationHandler
     public void onRegistrationComplete()
     {
         PacketUpdateMatterRegistry updateMatterRegistry = new PacketUpdateMatterRegistry(MatterOverdrive.matterRegistry.getEntries());
-        for (EntityPlayerMP playerMP : (List<EntityPlayerMP>) MinecraftServer.getServer().getEntityWorld().playerEntities)
+        for (EntityPlayer player : MinecraftServer.getServer().getEntityWorld().playerEntities)
         {
-            MatterOverdrive.packetPipeline.sendTo(updateMatterRegistry,playerMP);
+            MatterOverdrive.packetPipeline.sendTo(updateMatterRegistry, (EntityPlayerMP) player);
         }
     }
 }

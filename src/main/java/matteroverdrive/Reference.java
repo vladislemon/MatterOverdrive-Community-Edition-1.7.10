@@ -29,7 +29,7 @@ public class Reference
 {
 	public static final String MOD_ID = "mo";
 	public static final String MOD_NAME = "MatterOverdrive: Community Edition";
-	public static final String VERSION = "@VERSION@";
+	public static final String VERSION = BuildInfo.VERSION;
 	private static final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 	public static final String VERSION_DATE = dateFormat.format(new Date());
 	public static final String GUI_FACTORY_CLASS = "matteroverdrive.gui.GuiConfigFactory";
