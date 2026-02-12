@@ -21,9 +21,19 @@ package matteroverdrive.gui.pages;
 import matteroverdrive.Reference;
 import matteroverdrive.gui.MOGuiBase;
 import matteroverdrive.gui.MOGuiMachine;
-import matteroverdrive.gui.element.*;
+import matteroverdrive.gui.element.ElementBaseGroup;
+import matteroverdrive.gui.element.ElementCheckbox;
+import matteroverdrive.gui.element.ElementIntegerField;
+import matteroverdrive.gui.element.ElementStates;
+import matteroverdrive.gui.element.MOElementBase;
+import matteroverdrive.gui.element.MOElementButtonScaled;
+import matteroverdrive.gui.element.MOElementTextField;
 import matteroverdrive.machines.components.ComponentConfigs;
-import matteroverdrive.machines.configs.*;
+import matteroverdrive.machines.configs.ConfigPropertyBoolean;
+import matteroverdrive.machines.configs.ConfigPropertyInteger;
+import matteroverdrive.machines.configs.ConfigPropertyString;
+import matteroverdrive.machines.configs.ConfigPropertyStringList;
+import matteroverdrive.machines.configs.IConfigProperty;
 import matteroverdrive.util.MOStringHelper;
 
 /**

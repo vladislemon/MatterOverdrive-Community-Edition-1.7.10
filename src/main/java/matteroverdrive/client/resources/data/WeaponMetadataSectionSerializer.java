@@ -18,7 +18,14 @@
 
 package matteroverdrive.client.resources.data;
 
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 import net.minecraft.client.resources.data.BaseMetadataSectionSerializer;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.Vec3;

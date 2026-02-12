@@ -20,7 +20,12 @@ package matteroverdrive.compat.modules.waila;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
-import matteroverdrive.blocks.*;
+import matteroverdrive.blocks.BlockDecomposer;
+import matteroverdrive.blocks.BlockFusionReactorController;
+import matteroverdrive.blocks.BlockReplicator;
+import matteroverdrive.blocks.BlockStarMap;
+import matteroverdrive.blocks.BlockTransporter;
+import matteroverdrive.blocks.BlockWeaponStation;
 import matteroverdrive.compat.Compat;
 import matteroverdrive.machines.fusionReactorController.TileEntityMachineFusionReactorController;
 import matteroverdrive.machines.transporter.TileEntityMachineTransporter;

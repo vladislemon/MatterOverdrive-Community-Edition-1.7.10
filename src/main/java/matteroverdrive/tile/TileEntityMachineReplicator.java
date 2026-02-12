@@ -24,7 +24,11 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import matteroverdrive.MatterOverdrive;
 import matteroverdrive.api.inventory.UpgradeTypes;
-import matteroverdrive.api.network.*;
+import matteroverdrive.api.network.IMatterNetworkBroadcaster;
+import matteroverdrive.api.network.IMatterNetworkClient;
+import matteroverdrive.api.network.IMatterNetworkDispatcher;
+import matteroverdrive.api.network.IMatterNetworkHandler;
+import matteroverdrive.api.network.MatterNetworkTaskState;
 import matteroverdrive.blocks.BlockReplicator;
 import matteroverdrive.compat.modules.waila.IWailaBodyProvider;
 import matteroverdrive.data.BlockPos;
@@ -66,7 +70,9 @@ import org.lwjgl.util.vector.Vector3f;
 import java.util.EnumSet;
 import java.util.List;
 
-import static matteroverdrive.util.MOBlockHelper.*;
+import static matteroverdrive.util.MOBlockHelper.getLeftSide;
+import static matteroverdrive.util.MOBlockHelper.getOppositeSide;
+import static matteroverdrive.util.MOBlockHelper.getRightSide;
 
 
 public class TileEntityMachineReplicator extends MOTileEntityMachineMatter implements IMatterNetworkClient, IMatterNetworkHandler, IMatterNetworkDispatcher<MatterNetworkTaskReplicatePattern>,IMatterNetworkBroadcaster,IWailaBodyProvider

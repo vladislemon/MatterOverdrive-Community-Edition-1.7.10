@@ -24,7 +24,12 @@ import matteroverdrive.api.quest.IQuestReward;
 import matteroverdrive.api.quest.QuestStack;
 import matteroverdrive.container.ContainerFalse;
 import matteroverdrive.data.quest.rewards.ItemStackReward;
-import matteroverdrive.gui.element.*;
+import matteroverdrive.gui.element.ElementBaseGroup;
+import matteroverdrive.gui.element.ElementItemPreview;
+import matteroverdrive.gui.element.ElementScrollGroup;
+import matteroverdrive.gui.element.ElementTextList;
+import matteroverdrive.gui.element.MOElementBase;
+import matteroverdrive.gui.element.MOElementButtonScaled;
 import matteroverdrive.network.packet.server.PacketQuestActions;
 import matteroverdrive.util.MOStringHelper;
 import matteroverdrive.util.RenderUtils;
@@ -35,7 +40,11 @@ import net.minecraft.util.ResourceLocation;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.glColor3f;
+import static org.lwjgl.opengl.GL11.glPopMatrix;
+import static org.lwjgl.opengl.GL11.glPushMatrix;
+import static org.lwjgl.opengl.GL11.glScalef;
+import static org.lwjgl.opengl.GL11.glTranslated;
 
 /**
  * Created by Simeon on 11/22/2015.

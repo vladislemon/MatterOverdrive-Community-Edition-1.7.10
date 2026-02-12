@@ -25,7 +25,11 @@ import matteroverdrive.client.data.Color;
 import matteroverdrive.container.ContainerStarMap;
 import matteroverdrive.container.MOBaseContainer;
 import matteroverdrive.data.ScaleTexture;
-import matteroverdrive.gui.pages.starmap.*;
+import matteroverdrive.gui.pages.starmap.PageGalaxy;
+import matteroverdrive.gui.pages.starmap.PagePlanetMenu;
+import matteroverdrive.gui.pages.starmap.PagePlanetStats;
+import matteroverdrive.gui.pages.starmap.PageQuadrant;
+import matteroverdrive.gui.pages.starmap.PageStar;
 import matteroverdrive.network.packet.server.starmap.PacketStarMapClientCommands;
 import matteroverdrive.proxy.ClientProxy;
 import matteroverdrive.starmap.GalaxyClient;
@@ -46,7 +50,19 @@ import org.lwjgl.util.glu.Project;
 import java.util.Collection;
 import java.util.List;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_BLEND;
+import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_ONE;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.glBlendFunc;
+import static org.lwjgl.opengl.GL11.glColor3f;
+import static org.lwjgl.opengl.GL11.glDisable;
+import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.glPopMatrix;
+import static org.lwjgl.opengl.GL11.glPushAttrib;
+import static org.lwjgl.opengl.GL11.glPushMatrix;
+import static org.lwjgl.opengl.GL11.glRotated;
+import static org.lwjgl.opengl.GL11.glTranslated;
 
 /**
  * Created by Simeon on 6/12/2015.

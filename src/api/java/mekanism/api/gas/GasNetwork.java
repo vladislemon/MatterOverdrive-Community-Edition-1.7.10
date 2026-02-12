@@ -10,7 +10,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * A DynamicNetwork extension created specifically for the transfer of Gasses. By default this is server-only, but if ticked on
@@ -92,7 +97,7 @@ public class GasNetwork extends DynamicNetwork<IGasHandler, GasNetwork>
 	public void absorbBuffer(IGridTransmitter<IGasHandler, GasNetwork> transmitter)
 	{
 		Object b = transmitter.getBuffer();
-		
+
 		if(!(b instanceof GasStack) || ((GasStack)b).getGas() == null || ((GasStack)b).amount == 0)
 		{
 			return;
@@ -111,7 +116,7 @@ public class GasNetwork extends DynamicNetwork<IGasHandler, GasNetwork>
 		{
 			buffer.amount += gas.amount;
 		}
-		
+
 		gas.amount = 0;
 	}
 
@@ -280,7 +285,7 @@ public class GasNetwork extends DynamicNetwork<IGasHandler, GasNetwork>
 	{
 		Gas type = (Gas)data;
 		Set<IGasHandler> toReturn = new HashSet<IGasHandler>();
-		
+
 		if(FMLCommonHandler.instance().getEffectiveSide().isClient())
 		{
 			return toReturn;
@@ -290,12 +295,12 @@ public class GasNetwork extends DynamicNetwork<IGasHandler, GasNetwork>
 		{
 			EnumSet<ForgeDirection> sides = acceptorDirections.get(coord);
 			TileEntity tile = coord.getTileEntity(getWorld());
-			
+
 			if(!(tile instanceof IGasHandler) || sides == null || sides.isEmpty())
 			{
 				continue;
 			}
-			
+
 			IGasHandler acceptor = (IGasHandler)tile;
 
 			for(ForgeDirection side : sides)

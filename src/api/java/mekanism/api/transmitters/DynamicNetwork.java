@@ -14,8 +14,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Map.Entry;
+import java.util.Set;
 
 public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implements IClientTicker, INetworkDataHandler
 {
@@ -62,13 +67,13 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 					{
 						updateTransmitterOnSide(transmitter, side);
 					}
-					
+
 					transmitter.setTransmitterNetwork((N)this);
 					absorbBuffer(transmitter);
 					transmitters.add(transmitter);
 				}
 			}
-			
+
 			updateCapacity();
 			clampBuffer();
 			queueClientUpdate(Lists.newArrayList(transmittersToAdd));
@@ -80,7 +85,7 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 			for(Entry<IGridTransmitter<A, N>, EnumSet<ForgeDirection>> entry : changedAcceptors.entrySet())
 			{
 				IGridTransmitter<A, N> transmitter = entry.getKey();
-				
+
 				if(transmitter.isValid())
 				{
 					EnumSet<ForgeDirection> directionsChanged = entry.getValue();
@@ -91,7 +96,7 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 					}
 				}
 			}
-			
+
 			changedAcceptors.clear();
 		}
 	}
@@ -143,7 +148,7 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 		{
 			invalidateTransmitter(transmitter);
 		}
-		
+
 		transmitters.clear();
 		deregister();
 	}
@@ -161,15 +166,15 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 	public void acceptorChanged(IGridTransmitter<A, N> transmitter, ForgeDirection side)
 	{
 		EnumSet<ForgeDirection> directions = changedAcceptors.get(transmitter);
-		
+
 		if(directions != null)
 		{
 			directions.add(side);
-		} 
+		}
 		else {
 			changedAcceptors.put(transmitter, EnumSet.of(side));
 		}
-		
+
 		TransmitterNetworkRegistry.registerChangedNetwork(this);
 	}
 
@@ -181,13 +186,13 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 			transmitters.add(transmitter);
 			transmittersAdded.add(transmitter);
 		}
-		
+
 		possibleAcceptors.putAll(net.possibleAcceptors);
-		
+
 		for(Entry<Coord4D, EnumSet<ForgeDirection>> entry : net.acceptorDirections.entrySet())
 		{
 			Coord4D coord = entry.getKey();
-			
+
 			if(acceptorDirections.containsKey(coord))
 			{
 				acceptorDirections.get(coord).addAll(entry.getValue());
@@ -205,10 +210,10 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 		{
 			return genPacketRange();
 		}
-		
+
 		return packetRange;
 	}
-	
+
 	protected Range4D genPacketRange()
 	{
 		if(getSize() == 0)
@@ -219,18 +224,18 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 
 		IGridTransmitter<A, N> initTransmitter = transmitters.iterator().next();
 		Coord4D initCoord = initTransmitter.coord();
-		
+
 		int minX = initCoord.xCoord;
 		int minY = initCoord.yCoord;
 		int minZ = initCoord.zCoord;
 		int maxX = initCoord.xCoord;
 		int maxY = initCoord.yCoord;
 		int maxZ = initCoord.zCoord;
-		
+
 		for(IGridTransmitter transmitter : transmitters)
 		{
 			Coord4D coord = transmitter.coord();
-			
+
 			if(coord.xCoord < minX) minX = coord.xCoord;
 			if(coord.yCoord < minY) minY = coord.yCoord;
 			if(coord.zCoord < minZ) minZ = coord.zCoord;
@@ -238,7 +243,7 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 			if(coord.yCoord > maxY) maxY = coord.yCoord;
 			if(coord.zCoord > maxZ) maxZ = coord.zCoord;
 		}
-		
+
 		return new Range4D(minX, minY, minZ, maxX, maxY, maxZ, initTransmitter.world().provider.dimensionId);
 	}
 
@@ -276,7 +281,7 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 		return possibleAcceptors.size();
 	}
 
-	public synchronized void updateCapacity() 
+	public synchronized void updateCapacity()
 	{
 		updateMeanCapacity();
 		capacity = (int)meanCapacity * transmitters.size();
@@ -286,17 +291,17 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
      * Override this if things can have variable capacity along the network.
      * @return An 'average' value of capacity. Calculate it how you will.
      */
-	protected synchronized void updateMeanCapacity() 
+	protected synchronized void updateMeanCapacity()
 	{
-		if(transmitters.size() > 0) 
+		if(transmitters.size() > 0)
 		{
 			meanCapacity = transmitters.iterator().next().getCapacity();
-		} 
+		}
 		else {
 			meanCapacity = 0;
 		}
 	}
-	
+
     public int getCapacity()
     {
     	return capacity;
@@ -328,7 +333,7 @@ public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implemen
 					if(q.delay > 0)
 					{
 						q.delay--;
-					} 
+					}
 					else {
 						transmittersAdded.addAll(transmitters);
 						updateDelay = 1;

@@ -18,7 +18,6 @@
 
 package matteroverdrive.commands;
 
-import matteroverdrive.MatterOverdrive;
 import matteroverdrive.util.MOLog;
 import matteroverdrive.world.MOImageGen;
 import net.minecraft.block.Block;
@@ -29,7 +28,12 @@ import net.minecraft.init.Blocks;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

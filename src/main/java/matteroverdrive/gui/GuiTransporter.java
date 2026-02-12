@@ -19,7 +19,14 @@
 package matteroverdrive.gui;
 
 import matteroverdrive.container.ContainerFactory;
-import matteroverdrive.gui.element.*;
+import matteroverdrive.gui.element.ElementIntegerField;
+import matteroverdrive.gui.element.ElementMatterStored;
+import matteroverdrive.gui.element.ElementTransportList;
+import matteroverdrive.gui.element.MOElementBase;
+import matteroverdrive.gui.element.MOElementButton;
+import matteroverdrive.gui.element.MOElementButtonScaled;
+import matteroverdrive.gui.element.MOElementEnergy;
+import matteroverdrive.gui.element.MOElementTextField;
 import matteroverdrive.init.MatterOverdriveItems;
 import matteroverdrive.machines.transporter.TileEntityMachineTransporter;
 import matteroverdrive.util.MOStringHelper;

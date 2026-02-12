@@ -21,7 +21,11 @@ package matteroverdrive.init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.relauncher.Side;
 import matteroverdrive.api.dialog.IDialogRegistry;
-import matteroverdrive.dialog.*;
+import matteroverdrive.dialog.DialogMessage;
+import matteroverdrive.dialog.DialogMessageBack;
+import matteroverdrive.dialog.DialogMessageBackToMain;
+import matteroverdrive.dialog.DialogMessageQuit;
+import matteroverdrive.dialog.DialogMessageTrade;
 import matteroverdrive.entity.EntityVillagerMadScientist;
 import matteroverdrive.handler.ConfigurationHandler;
 

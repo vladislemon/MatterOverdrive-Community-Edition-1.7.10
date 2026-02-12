@@ -25,7 +25,13 @@ import matteroverdrive.data.Bounds;
 import matteroverdrive.data.ScaleTexture;
 import matteroverdrive.gui.GuiMatterScanner;
 import matteroverdrive.gui.MOGuiBase;
-import matteroverdrive.gui.element.*;
+import matteroverdrive.gui.element.ElementBaseGroup;
+import matteroverdrive.gui.element.ElementGuideCategory;
+import matteroverdrive.gui.element.ElementGuideEntry;
+import matteroverdrive.gui.element.ElementStatesHoloIcons;
+import matteroverdrive.gui.element.MOElementBase;
+import matteroverdrive.gui.element.MOElementButton;
+import matteroverdrive.gui.element.MOElementTextField;
 import matteroverdrive.gui.events.ITextHandler;
 import matteroverdrive.guide.GuideCategory;
 import matteroverdrive.guide.MOGuideEntry;
@@ -45,7 +51,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_ALPHA_TEST;
+import static org.lwjgl.opengl.GL11.GL_BLEND;
+import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_LEQUAL;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.opengl.GL11.glClearDepth;
+import static org.lwjgl.opengl.GL11.glColor4d;
+import static org.lwjgl.opengl.GL11.glColorMask;
+import static org.lwjgl.opengl.GL11.glDepthFunc;
+import static org.lwjgl.opengl.GL11.glDepthMask;
+import static org.lwjgl.opengl.GL11.glDisable;
+import static org.lwjgl.opengl.GL11.glEnable;
 
 /**
  * Created by Simeon on 8/28/2015.
